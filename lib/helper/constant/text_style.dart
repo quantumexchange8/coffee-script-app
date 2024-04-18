@@ -12,26 +12,32 @@ final subtitleLarge = height24;
 final subtitleMedium = height10 * 2.2;
 final subtitleSmall = height10 * 1.8;
 
-const title = TextStyle(
+const titleStyle = TextStyle(
     fontFamily: primaryFontFamily,
     fontWeight: FontWeight.w700,
     color: textColor);
 
-const subtitle = TextStyle(
+const subtitleStyle = TextStyle(
     fontFamily: primaryFontFamily,
     fontWeight: FontWeight.w600,
     color: textColor);
 
-final textButton = TextStyle(
+final textButtonStyle = TextStyle(
     fontFamily: primaryFontFamily,
     fontSize: height20,
     fontWeight: FontWeight.w700,
     color: backgroundColor);
 
-final descriptionText = TextStyle(
+final descriptionStyle = TextStyle(
     fontFamily: primaryFontFamily,
     fontSize: height10 * 1.4,
-    color: backgroundColor);
+    color: primaryColor);
+
+final authHintStyle = TextStyle(
+    fontFamily: primaryFontFamily,
+    fontSize: height10 * 1.2,
+    fontWeight: FontWeight.w500,
+    color: const Color(0xFF828282));
 
 final hintStyle = TextStyle(
     fontFamily: primaryFontFamily,
@@ -39,7 +45,7 @@ final hintStyle = TextStyle(
     fontWeight: FontWeight.w500,
     color: backgroundColor.withOpacity(0.5));
 
-final moneyTag = TextStyle(
+final moneyTagStyle = TextStyle(
     fontFamily: secondaryFontFamily,
     fontSize: height10 * 1.6,
     fontWeight: FontWeight.w600,
