@@ -1,5 +1,6 @@
 import 'package:coffee_script_app/helper/dimensions.dart';
-import 'package:coffee_script_app/pages/onboarding/splash_page.dart';
+import 'package:coffee_script_app/pages/home/product_dummy.dart';
+import 'package:coffee_script_app/pages/universal/select_product_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
           // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           // useMaterial3: true,
           ),
-      home: const SplashPage(),
+      home: SelectProductPage(selectedProduct: allProduct[0]),
     );
   }
 }
