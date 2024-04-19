@@ -1,3 +1,4 @@
+import 'package:coffee_script_app/pages/widgets/bottom_navigation_bar.dart';
 import 'package:coffee_script_app/pages/cart/cart_page.dart';
 import 'package:coffee_script_app/pages/favourite/favourite_page.dart';
 import 'package:coffee_script_app/pages/home/home_page.dart';
@@ -27,19 +28,13 @@ class _MainLayoutState extends State<MainLayout> {
           ProfilePage()
         ],
       ),
-      // bottomNavigationBar: NavigationBar(
-      //   destinations: [
-      //     NavigationDestination(),
-      //     NavigationDestination(),
-      //     NavigationDestination(),
-      //   ],
-      //   selectedIndex: _currentIndex,
-      //   onDestinationSelected: (index) {
-      //     setState(() {
-      //       _currentIndex = index;
-      //     });
-      //   },
-      // ),
+      bottomNavigationBar: customBottomNavigationBar(
+        onTap: (index) {
+          setState(() {
+            _pageNo = index;
+          });
+        },
+      ),
     );
   }
 }
