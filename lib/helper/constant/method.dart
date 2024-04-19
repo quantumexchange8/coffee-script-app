@@ -14,3 +14,7 @@ Future pushReplacement(BuildContext context,
     },
   ));
 }
+
+bool changeBoolString(String boolString) {
+  return boolString == 'true' ? true : false;
+}
