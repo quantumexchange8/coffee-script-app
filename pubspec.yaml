@@ -39,6 +39,8 @@ dependencies:
   carousel_slider: ^4.2.1
   fade_indexed_stack: ^0.2.2
   convex_bottom_bar: ^3.2.0
+  collection: ^1.18.0
+  like_button: ^2.0.5
 
 dev_dependencies:
   flutter_test:
