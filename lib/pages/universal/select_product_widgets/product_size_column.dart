@@ -2,15 +2,17 @@ import 'package:coffee_script_app/helper/constant/color_pallete.dart';
 import 'package:coffee_script_app/helper/constant/text_style.dart';
 import 'package:coffee_script_app/helper/dimensions.dart';
 import 'package:coffee_script_app/helper/icons.dart';
+import 'package:coffee_script_app/pages/universal/select_product_methods.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
-Column productSizeContainerwithNameColumn(
-        {void Function()? onTap,
-        required bool picked,
-        required double containerSize,
-        required double iconSize,
-        required String sizeName}) =>
+Widget productSizeContainer({
+  void Function()? onTap,
+  required bool picked,
+  required double containerSize,
+  required double iconSize,
+  required String sizeName,
+}) =>
     Column(
       children: [
         GestureDetector(
@@ -43,44 +45,38 @@ Column productSizeContainerwithNameColumn(
 Column productSizeColumn({
   required String selectedProductType,
   required int selectedCoffeeSizeIndex,
-  void Function()? onTapProductSize,
+  required void Function(int index) onTapProductSize,
 }) {
-  String coreProductName;
-  if (selectedProductType.toLowerCase().contains('coffee')) {
-    coreProductName = 'Coffee';
-  } else if (selectedProductType.toLowerCase().contains('tea')) {
-    coreProductName = 'Tea';
-  } else {
-    coreProductName = 'Drink';
-  }
+  String coreProductName = determineCoreProduct(selectedProductType);
 
-  return Column(
-    children: [
-      Text(
-        '$coreProductName Size',
-        textAlign: TextAlign.center,
-        style: titleStyle.copyWith(fontSize: titleMedium),
-      ),
-      SizedBox(
-        height: height08 * 2,
-      ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: drinkSize
-            .mapIndexed((i, e) => Padding(
-                  padding: EdgeInsets.only(
-                      right: (i != drinkSize.length - 1) ? width16 : 0),
-                  child: productSizeContainerwithNameColumn(
-                      onTap: onTapProductSize,
-                      containerSize: e['container_size'],
-                      picked: selectedCoffeeSizeIndex == i,
-                      iconSize: e['icon_size'],
-                      sizeName: e['size_name']),
-                ))
-            .toList(),
-      )
-    ],
-  );
+  return Column(children: [
+    Text(
+      '$coreProductName Size',
+      textAlign: TextAlign.center,
+      style: titleStyle.copyWith(fontSize: titleMedium),
+    ),
+    SizedBox(
+      height: height08 * 2,
+    ),
+    Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: drinkSize
+          .mapIndexed((i, e) => Padding(
+                padding: EdgeInsets.only(
+                    right: (i != drinkSize.length - 1) ? width16 : 0),
+                child: productSizeContainer(
+                    onTap: () {
+                      onTapProductSize(i);
+                    },
+                    containerSize: e['container_size'],
+                    picked: selectedCoffeeSizeIndex == i,
+                    iconSize: e['icon_size'],
+                    sizeName: e['size_name']),
+              ))
+          .toList(),
+    ),
+  ]);
 }
 
 List<Map<String, dynamic>> drinkSize = [

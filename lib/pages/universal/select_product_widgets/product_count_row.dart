@@ -3,29 +3,36 @@ import 'package:coffee_script_app/helper/constant/text_style.dart';
 import 'package:coffee_script_app/helper/dimensions.dart';
 import 'package:flutter/material.dart';
 
-Widget countButton({required IconData icon, required void Function()? onTap}) {
+Widget countButton(
+    {required IconData icon,
+    required void Function()? onTap,
+    Color? buttonColor,
+    Color? iconColor}) {
   return GestureDetector(
     onTap: onTap,
     child: Container(
       height: height31,
       width: height31,
       decoration: BoxDecoration(
-          color: primaryColor, borderRadius: BorderRadius.circular(8)),
+          color: buttonColor ?? primaryColor,
+          borderRadius: BorderRadius.circular(8)),
       child: Center(
         child: Icon(
           icon,
-          size: height15,
+          color: iconColor,
+          size: height24,
         ),
       ),
     ),
   );
 }
 
-productCountRow(
+Widget productCountRow(
     {required void Function()? onTapMinus,
     required void Function()? onTapAdd,
     required int countProduct}) {
   return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
     children: [
       countButton(icon: Icons.minimize, onTap: onTapMinus),
       Padding(
