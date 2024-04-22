@@ -10,48 +10,60 @@ Widget skipButton(void Function() onPressed) => TextButton(
       style: titleStyle.copyWith(fontSize: height10 * 1.4),
     ));
 
-Widget filledButton({
-  required void Function()? onPressed,
-  required String text,
-  double? width,
-  double? height,
-}) {
+Widget filledButton(
+    {required void Function()? onPressed,
+    MaterialStateProperty<EdgeInsetsGeometry?>? padding,
+    VisualDensity? visualDensity,
+    TextStyle? textStyle,
+    required String text,
+    double? width,
+    double? height,
+    Color backgroudColor = primaryColor,
+    double radius = 10,
+    Color? textColor}) {
   return FilledButton(
       onPressed: onPressed,
       style: ButtonStyle(
-          shape: MaterialStateProperty.all(const ContinuousRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10)))),
+          padding: padding,
+          minimumSize: MaterialStateProperty.all(const Size(10, 5)),
+          visualDensity: visualDensity,
+          shape: MaterialStateProperty.all(ContinuousRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(radius)))),
           fixedSize: MaterialStateProperty.all(
               Size(width ?? width100 * 3.5, height ?? height10 * 6.3)),
           backgroundColor:
-              MaterialStateColor.resolveWith((states) => primaryColor),
+              MaterialStateColor.resolveWith((states) => backgroudColor),
           foregroundColor:
-              MaterialStateColor.resolveWith((states) => primaryColor)),
+              MaterialStateColor.resolveWith((states) => backgroudColor)),
       child: Text(
         text,
-        style: textButtonStyle,
+        style: textStyle ?? textButtonStyle.copyWith(color: textColor),
       ));
 }
 
-Widget outlinedButton({
-  required void Function()? onPressed,
-  required String text,
-}) {
+Widget outlinedButton(
+    {required void Function()? onPressed,
+    required String text,
+    Color textColor = primaryColor,
+    double borderThickness = 3,
+    Size? size,
+    double radius = 10,
+    Color borderColor = primaryColor}) {
   return OutlinedButton(
       onPressed: onPressed,
       style: ButtonStyle(
           overlayColor: MaterialStateColor.resolveWith(
               (states) => primaryColor.withOpacity(0.8)),
-          side: MaterialStateBorderSide.resolveWith(
-              (states) => const BorderSide(width: 3, color: primaryColor)),
-          shape: MaterialStateProperty.all(const ContinuousRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10)))),
-          fixedSize:
-              MaterialStateProperty.all(Size(width100 * 3.5, height10 * 6.3)),
+          side: MaterialStateBorderSide.resolveWith((states) =>
+              BorderSide(width: borderThickness, color: borderColor)),
+          shape: MaterialStateProperty.all(ContinuousRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(radius)))),
+          fixedSize: MaterialStateProperty.all(
+              size ?? Size(width100 * 3.5, height10 * 6.3)),
           foregroundColor:
               MaterialStateColor.resolveWith((states) => Colors.transparent)),
       child: Text(
         text,
-        style: textButtonStyle.copyWith(color: primaryColor),
+        style: textButtonStyle.copyWith(color: textColor),
       ));
 }

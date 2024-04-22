@@ -2,8 +2,8 @@ import 'package:coffee_script_app/helper/constant/color_pallete.dart';
 import 'package:coffee_script_app/helper/dimensions.dart';
 import 'package:flutter/material.dart';
 
-IconButton whiteIconButton(String iconAddress,
-    {required void Function()? onPressed, Size? size}) {
+IconButton whiteIconButton(dynamic iconAddress,
+    {required void Function()? onPressed, Size? size, double? iconSize}) {
   return IconButton(
       hoverColor: primaryColor,
       highlightColor: primaryColor.withOpacity(0.5),
@@ -12,8 +12,14 @@ IconButton whiteIconButton(String iconAddress,
           BoxConstraints.tight(size ?? Size(height10 * 4, height10 * 4)),
       onPressed: onPressed,
       style: const ButtonStyle(splashFactory: InkRipple.splashFactory),
-      icon: Image.asset(
-        iconAddress,
-        fit: BoxFit.fitHeight,
-      ));
+      icon: iconAddress is String
+          ? Image.asset(
+              iconAddress,
+              fit: BoxFit.fitHeight,
+            )
+          : Icon(
+              iconAddress,
+              color: textColor,
+              size: height24,
+            ));
 }

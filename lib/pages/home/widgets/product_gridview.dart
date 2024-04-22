@@ -1,9 +1,10 @@
-import 'package:coffee_script_app/helper/constant/method.dart';
 import 'package:coffee_script_app/helper/dimensions.dart';
+import 'package:coffee_script_app/models/product.dart';
 import 'package:coffee_script_app/pages/home/widgets/product_container.dart';
+import 'package:coffee_script_app/pages/universal/select_product_page.dart';
 import 'package:flutter/material.dart';
 
-GridView productGridview(List<Map<String, dynamic>> productList) {
+GridView productGridview(List<Product> productList) {
   return GridView.builder(
     physics: const NeverScrollableScrollPhysics(),
     itemCount: productList.length,
@@ -16,12 +17,22 @@ GridView productGridview(List<Map<String, dynamic>> productList) {
     itemBuilder: (context, index) {
       final product = productList[index];
 
-      return productContainer(
-          productImage: product['product_image'],
-          productName: product['product_name'],
-          productPrice: product['product_price'],
-          productDescription: product['product_description'],
-          isFavourite: changeBoolString(product['favourite']));
+      return GestureDetector(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    SelectProductPage(selectedProduct: product),
+              ));
+        },
+        child: productContainer(
+            productImage: product.productImage,
+            productName: product.productName,
+            productPrice: product.toString(),
+            productDescription: product.productDescription,
+            isFavourite: product.favourite),
+      );
     },
   );
 }
