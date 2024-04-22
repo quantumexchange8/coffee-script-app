@@ -1,0 +1,91 @@
+import 'package:coffee_script_app/helper/constant/color_pallete.dart';
+import 'package:coffee_script_app/helper/constant/text_style.dart';
+import 'package:coffee_script_app/helper/dimensions.dart';
+import 'package:coffee_script_app/models/cart_item.dart';
+import 'package:coffee_script_app/pages/cart/checkout_widgets/checkout_detail_column.dart';
+import 'package:coffee_script_app/pages/cart/checkout_widgets/product_list.dart';
+import 'package:coffee_script_app/pages/onboarding/widgets.dart';
+import 'package:coffee_script_app/pages/widgets/simple_appbar.dart';
+import 'package:flutter/material.dart';
+
+final _sampleCartItems = [
+  CartItem(
+      productId: 1,
+      productImage: 'assets/product/robusta.png',
+      productName: 'Robusta',
+      productIngredient: 'Milk',
+      productPrice: 20,
+      productCount: 1),
+  CartItem(
+      productId: 2,
+      productImage: 'assets/product/liberica.png',
+      productName: 'Liberica',
+      productIngredient: 'Water',
+      productPrice: 12,
+      productCount: 1),
+  CartItem(
+      productId: 3,
+      productImage: 'assets/product/cirtus.png',
+      productName: 'Cirtus',
+      productIngredient: 'Lemon',
+      productPrice: 12,
+      productCount: 1),
+];
+
+class CheckoutPage extends StatelessWidget {
+  const CheckoutPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: backgroundColor,
+      appBar: simpleAppBar(context, title: 'Checkout'),
+      body: ListView(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: width20),
+            child: checkoutDetailColumn(
+                title: 'Deliver Address',
+                iconAddress: 'assets/iconImage/map-pin-line.png',
+                subtitle: 'Home',
+                description: '1910, wien stadt, At',
+                buttonText: 'Change'),
+          ),
+          SizedBox(
+            height: height08 * 2,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: width20),
+            child: checkoutDetailColumn(
+                title: 'Add Payment Method',
+                iconAddress: Icons.add,
+                subtitle: 'Add Card',
+                description: 'Credit or debit',
+                buttonText: 'Add'),
+          ),
+          SizedBox(
+            height: height30,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: width20),
+            child: Text(
+              'Product List',
+              style: hintStyle.copyWith(color: textColor, fontSize: height20),
+            ),
+          ),
+          SizedBox(
+            height: height24,
+          ),
+          productList(cartItems: _sampleCartItems),
+          SizedBox(
+            height: height20,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: width20),
+            child: filledButton(onPressed: () {}, text: 'Continue Payment'),
+          )
+        ],
+      ),
+    );
+  }
+}
