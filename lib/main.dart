@@ -1,16 +1,30 @@
+// ignore_for_file: use_build_context_synchronously
+
+// import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
+import 'package:coffee_script_app/controller/cart_controller.dart';
+// import 'package:coffee_script_app/controller/controller.dart';
+import 'package:coffee_script_app/controller/product_controller.dart';
 import 'package:coffee_script_app/helper/dimensions.dart';
-import 'package:coffee_script_app/pages/home/product_dummy.dart';
-import 'package:coffee_script_app/pages/universal/select_product_page.dart';
+import 'package:coffee_script_app/pages/auth/login_page.dart';
+import 'package:coffee_script_app/pages/cart/checkout_page.dart';
+import 'package:coffee_script_app/pages/home/home_page.dart';
+import 'package:coffee_script_app/pages/onboarding/splash_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  Future.delayed(const Duration(milliseconds: 200)).then((val) {
+  Future.delayed(const Duration(milliseconds: 200)).then((val) async {
+    Get.put(ProductController());
+    Get.put(CartController());
     runApp(const MyApp());
   }, onError: (error) {});
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({
+    super.key,
+  });
 
   // This widget is the root of your application.
   @override
@@ -26,7 +40,43 @@ class MyApp extends StatelessWidget {
           // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           // useMaterial3: true,
           ),
-      home: SelectProductPage(selectedProduct: allProduct[0]),
+      home: const CheckoutPage(),
+      //  FlutterSplashScreen.fadeIn(
+      //   backgroundImage: Image.asset(
+      //       'assets/backgroundPicture/splash_screen.png',
+      //       fit: BoxFit.cover),
+      //   childWidget: Image.asset(
+      //     'assets/logo/coffeescript_logo.png',
+      //     fit: BoxFit.fitHeight,
+      //     height: height100 * 1.57,
+      //   ),
+      //   asyncNavigationCallback: () async {
+      //     SharedPreferences prefs = await SharedPreferences.getInstance();
+
+      //     bool? firstTime = prefs.getBool('first_time');
+
+      //     if (firstTime != null && firstTime) {
+      //       prefs.setBool('first_time', false);
+      //       Navigator.pushReplacementNamed(context, 'splashRoute');
+      //       return;
+      //     } else {
+      //       bool getProductSuccess = await productController.getProductList();
+
+      //       if (!getProductSuccess) {
+      //         Navigator.pushReplacementNamed(context, 'loginRoute');
+      //         return;
+      //       }
+
+      //       Navigator.pushReplacementNamed(context, 'homeRoute');
+      //       return;
+      //     }
+      //   },
+      // ),
+      routes: {
+        'loginRoute': (p0) => const LoginPage(),
+        'homeRoute': (p0) => const HomePage(),
+        'splashRoute': (p0) => const SplashPage(),
+      },
     );
   }
 }
