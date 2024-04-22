@@ -41,6 +41,11 @@ dependencies:
   convex_bottom_bar: ^3.2.0
   collection: ^1.18.0
   like_button: ^2.0.5
+  get: ^4.6.6
+  shared_preferences: ^2.2.3
+  another_flutter_splash_screen: ^1.2.0
+  dotted_line: ^3.2.2
+  slideable: ^0.0.2
 
 dev_dependencies:
   flutter_test:
