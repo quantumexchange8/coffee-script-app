@@ -1,0 +1,123 @@
+[
+    {
+      "product_id": "1",
+      "product_name": "Arabica",
+      "product_price": "18",
+      "product_image": "assets/product/arabica.png",
+      "product_type": "Hot Coffees",
+      "product_ingredient": "Milk",
+      "product_description": "Lorem ipsum dolor sit amet cons",
+      "favourite": "false"
+    },
+    {
+      "product_id": "2",
+      "product_name": "Robusta",
+      "product_price": "20",
+      "product_image": "assets/product/robusta.png",
+      "product_type": "Hot Coffees",
+      "product_ingredient": "Milk",
+      "product_description": "Lorem ipsum dolor sit amet cons",
+      "favourite": "true"
+    },
+    {
+      "product_id": "3",
+      "product_name": "Excelsa",
+      "product_price": "15",
+      "product_image": "assets/product/excelsa.png",
+      "product_type": "Hot Coffees",
+      "product_ingredient": "Milk",
+      "product_description": "Lorem ipsum dolor sit amet cons",
+      "favourite": "false"
+    },
+    {
+      "product_id": "4",
+      "product_name": "Liberica",
+      "product_price": "12",
+      "product_image": "assets/product/liberica.png",
+      "product_type": "Hot Coffees",
+      "product_ingredient": "Water",
+      "product_description": "Lorem ipsum dolor sit amet cons",
+      "favourite": "false"
+    },
+    {
+      "product_id": "5",
+      "product_name": "Raspberry",
+      "product_price": "18",
+      "product_image": "assets/product/raspberry.png",
+      "product_type": "Ice Teas",
+      "product_ingredient": "Raspberry",
+      "product_description": "Lorem ipsum dolor sit amet cons",
+      "favourite": "false"
+    },
+    {
+      "product_id": "6",
+      "product_name": "Limiade",
+      "product_price": "20",
+      "product_image": "assets/product/limiade.png",
+      "product_type": "Ice Teas",
+      "product_ingredient": "Lemon",
+      "product_description": "Lorem ipsum dolor sit amet cons",
+      "favourite": "true"
+    },
+    {
+      "product_id": "7",
+      "product_name": "Hibiscus",
+      "product_price": "15",
+      "product_image": "assets/product/hibiscus.png",
+      "product_type": "Ice Teas",
+      "product_ingredient": "Lemon",
+      "product_description": "Lorem ipsum dolor sit amet cons",
+      "favourite": "false"
+    },
+    {
+      "product_id": "8",
+      "product_name": "Cirtus",
+      "product_price": "12",
+      "product_image": "assets/product/cirtus.png",
+      "product_type": "Ice Teas",
+      "product_ingredient": "Lemon",
+      "product_description": "Lorem ipsum dolor sit amet cons",
+      "favourite": "false"
+    },
+    {
+      "product_id": "9",
+      "product_name": "Black Tea",
+      "product_price": "18",
+      "product_image": "assets/product/black_tea.png",
+      "product_type": "Hot Teas",
+      "product_ingredient": "Water",
+      "product_description": "Lorem ipsum dolor sit amet cons",
+      "favourite": "false"
+    },
+    {
+      "product_id": "10",
+      "product_name": "Green Tea",
+      "product_price": "20",
+      "product_image": "assets/product/green_tea.png",
+      "product_type": "Hot Teas",
+      "product_ingredient": "Water",
+      "product_description": "Lorem ipsum dolor sit amet cons",
+      "favourite": "true"
+    },
+    {
+      "product_id": "11",
+      "product_name": "Olong Tea",
+      "product_price": "15",
+      "product_image": "assets/product/olong_tea.png",
+      "product_type": "Hot Teas",
+      "product_ingredient": "Water",
+      "product_description": "Lorem ipsum dolor sit amet cons",
+      "favourite": "false"
+    },
+    {
+      "product_id": "12",
+      "product_name": "Matcha",
+      "product_price": "12",
+      "product_image": "assets/product/matcha.png",
+      "product_type": "Hot Teas",
+      "product_ingredient": "Milk",
+      "product_description": "Lorem ipsum dolor sit amet cons",
+      "favourite": "false"
+    }
+  ]
+  
