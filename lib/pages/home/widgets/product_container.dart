@@ -51,12 +51,13 @@ Container productContainer({
   required String productPrice,
   required String productDescription,
   required bool isFavourite,
+  double radius = 7,
 }) {
   return Container(
     padding: EdgeInsets.symmetric(horizontal: width10 * 0.9),
     decoration: BoxDecoration(
       color: primaryColor,
-      borderRadius: BorderRadius.circular(7),
+      borderRadius: BorderRadius.circular(radius),
     ),
     child: Column(
       children: [
