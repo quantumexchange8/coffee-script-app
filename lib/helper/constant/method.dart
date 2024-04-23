@@ -1,3 +1,5 @@
+import 'package:coffee_script_app/models/notification.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
 Future pushReplacement(BuildContext context,
@@ -17,4 +19,18 @@ Future pushReplacement(BuildContext context,
 
 bool changeBoolString(String boolString) {
   return boolString == 'true' ? true : false;
+}
+
+Map<DateTime, List<NotificationModel>> getDayGroupedNotification(
+    {required List<NotificationModel> rangeDateNotification}) {
+  // Group the transactions by their dates
+  final groupedNotifications = groupBy(rangeDateNotification, (notification) {
+    final createdAt = notification.createdAt;
+    return DateTime(createdAt.year, createdAt.month, createdAt.day);
+  });
+  return groupedNotifications;
+}
+
+bool determineIsLast(int index, List list) {
+  return index == (list.length - 1);
 }
