@@ -15,7 +15,6 @@ class Product {
   bool favourite;
   String productIngredient;
   double productPrice;
-  int productCount;
   Product({
     required this.productId,
     required this.productName,
@@ -25,7 +24,6 @@ class Product {
     required this.favourite,
     required this.productIngredient,
     required this.productPrice,
-    required this.productCount,
   });
 
   Map<String, dynamic> toMap() {
@@ -38,13 +36,12 @@ class Product {
       'favourite': favourite,
       'product_ingredient': productIngredient,
       'product_price': productPrice,
-      'product_count': productCount,
     };
   }
 
   factory Product.fromMap(Map<String, dynamic> map) {
     return Product(
-      productId: map['product_id'] as int,
+      productId: int.parse(map['product_id']),
       productName: map['product_name'] as String,
       productImage: map['product_image'] as String,
       productType: map['product_type'] as String,
@@ -52,7 +49,6 @@ class Product {
       favourite: changeBoolString(map['favourite']),
       productIngredient: map['product_ingredient'] as String,
       productPrice: double.parse(map['product_price']),
-      productCount: map['product_count'] as int,
     );
   }
 
