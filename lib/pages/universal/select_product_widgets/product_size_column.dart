@@ -1,4 +1,5 @@
 import 'package:coffee_script_app/helper/constant/color_pallete.dart';
+import 'package:coffee_script_app/helper/constant/method.dart';
 import 'package:coffee_script_app/helper/constant/text_style.dart';
 import 'package:coffee_script_app/helper/dimensions.dart';
 import 'package:coffee_script_app/helper/icons.dart';
@@ -64,7 +65,7 @@ Column productSizeColumn({
       children: drinkSize
           .mapIndexed((i, e) => Padding(
                 padding: EdgeInsets.only(
-                    right: (i != drinkSize.length - 1) ? width16 : 0),
+                    right: (determineIsLast(i, drinkSize)) ? 0 : width16),
                 child: productSizeContainer(
                     onTap: () {
                       onTapProductSize(i);

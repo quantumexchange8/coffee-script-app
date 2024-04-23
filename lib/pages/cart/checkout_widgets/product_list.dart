@@ -1,4 +1,5 @@
 import 'package:coffee_script_app/helper/constant/color_pallete.dart';
+import 'package:coffee_script_app/helper/constant/method.dart';
 import 'package:coffee_script_app/helper/constant/text_style.dart';
 import 'package:coffee_script_app/helper/dimensions.dart';
 import 'package:coffee_script_app/models/cart_item.dart';
@@ -67,7 +68,7 @@ Column productList({required List<CartItem> cartItems}) {
                     productName: e.productName,
                     productIngredient: e.productIngredient,
                     productPrice: e.productPrice.toInt().toString()),
-                if (i != (cartItems.length - 1))
+                if (determineIsLast(i, cartItems))
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: height24 / 2),
                     child: const Divider(

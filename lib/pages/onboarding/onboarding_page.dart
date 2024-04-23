@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:coffee_script_app/helper/constant/color_pallete.dart';
+import 'package:coffee_script_app/helper/constant/method.dart';
 import 'package:coffee_script_app/helper/dimensions.dart';
 import 'package:coffee_script_app/pages/onboarding/onboarding_layout.dart';
 import 'package:coffee_script_app/pages/onboarding/widgets.dart';
@@ -59,7 +60,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               )),
         ),
         actions: [
-          if (pageNo != (pageItems.length - 1))
+          if (determineIsLast(pageNo, pageItems))
             skipButton(() {
               setState(() {
                 indicatorController.animateToPage(pageItems.length - 1,
