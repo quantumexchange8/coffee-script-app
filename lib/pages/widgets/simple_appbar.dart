@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 AppBar simpleAppBar(BuildContext context,
         {required String title, List<Widget>? actions}) =>
     AppBar(
+      surfaceTintColor: Colors.transparent,
       backgroundColor: Colors.transparent,
       centerTitle: true,
       leading: backButton(context),
