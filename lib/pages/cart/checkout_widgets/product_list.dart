@@ -64,10 +64,10 @@ Column productList({required List<CartItem> cartItems}) {
               mainAxisSize: MainAxisSize.min,
               children: [
                 productCheckoutRow(
-                    productImage: e.productImage,
-                    productName: e.productName,
-                    productIngredient: e.productIngredient,
-                    productPrice: e.productPrice.toInt().toString()),
+                    productImage: e.product.productImage,
+                    productName: e.product.productName,
+                    productIngredient: e.product.productIngredient,
+                    productPrice: e.product.productPrice.toInt().toString()),
                 if (determineIsLast(i, cartItems))
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: height24 / 2),

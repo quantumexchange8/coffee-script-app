@@ -5,13 +5,16 @@ import 'package:coffee_script_app/pages/widgets/back_button.dart';
 import 'package:flutter/material.dart';
 
 AppBar outsideAppBar(BuildContext context,
-        {required String title, List<Widget>? actions}) =>
+        {bool centerTitle = true,
+        Widget? titleWidget,
+        required String title,
+        List<Widget>? actions}) =>
     AppBar(
       surfaceTintColor: Colors.transparent,
       backgroundColor: backgroundColor,
-      centerTitle: true,
+      centerTitle: centerTitle,
       leading: backButton(context),
-      title: appbarTitle(title),
+      title: titleWidget ?? appbarTitle(title),
       actions: actions,
       toolbarHeight: height100,
       shape: const ContinuousRectangleBorder(

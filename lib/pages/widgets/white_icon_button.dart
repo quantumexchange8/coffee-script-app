@@ -16,10 +16,11 @@ IconButton whiteIconButton(dynamic iconAddress,
           ? Image.asset(
               iconAddress,
               fit: BoxFit.fitHeight,
+              height: iconSize,
             )
           : Icon(
               iconAddress,
               color: textColor,
-              size: height24,
+              size: iconSize ?? height24,
             ));
 }

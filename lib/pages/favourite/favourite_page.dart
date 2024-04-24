@@ -4,6 +4,7 @@ import 'package:coffee_script_app/models/product.dart';
 import 'package:coffee_script_app/pages/favourite/widgets.dart';
 import 'package:coffee_script_app/pages/home/widgets/product_container.dart';
 import 'package:coffee_script_app/pages/widgets/simple_appbar.dart';
+import 'package:coffee_script_app/pages/widgets/white_icon_button.dart';
 import 'package:flutter/material.dart';
 
 class FavouritePage extends StatefulWidget {
@@ -29,7 +30,12 @@ class _FavouritePageState extends State<FavouritePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
-      appBar: simpleAppBar(context, title: 'Favourite'),
+      appBar: simpleAppBar(context, title: 'Favourite', actions: [
+        whiteIconButton(
+          'assets/iconImage/notification-4-line-white.png',
+          onPressed: () {},
+        )
+      ]),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: width20, vertical: height24),
         child: Column(

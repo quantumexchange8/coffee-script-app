@@ -8,8 +8,8 @@ import 'package:coffee_script_app/controller/timeline_controller.dart';
 import 'package:coffee_script_app/helper/dimensions.dart';
 import 'package:coffee_script_app/pages/auth/login_page.dart';
 import 'package:coffee_script_app/pages/home/home_page.dart';
-import 'package:coffee_script_app/pages/notification/notification_page.dart';
 import 'package:coffee_script_app/pages/onboarding/splash_page.dart';
+import 'package:coffee_script_app/pages/profile/setting_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
           // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           // useMaterial3: true,
           ),
-      home: const NotificationPage(),
+      home: const SettingPage(),
       //  FlutterSplashScreen.fadeIn(
       //   backgroundImage: Image.asset(
       //       'assets/backgroundPicture/splash_screen.png',

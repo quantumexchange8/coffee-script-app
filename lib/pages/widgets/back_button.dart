@@ -10,5 +10,5 @@ Widget backButton(BuildContext context) => IconButton(
     icon: Icon(
       Icons.arrow_back_ios,
       color: primaryColor,
-      size: height10 * 3.3,
+      size: height24,
     ));

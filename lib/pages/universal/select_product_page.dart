@@ -100,12 +100,7 @@ class _SelectProductPageState extends State<SelectProductPage> {
                       totalAmount: totalAmount,
                       onPressedAddToCart: () {
                         cartController.cartProductList.add(CartItem(
-                            productId: selectedProduct.productId,
-                            productImage: selectedProduct.productImage,
-                            productName: selectedProduct.productName,
-                            productIngredient:
-                                selectedProduct.productIngredient,
-                            productPrice: selectedProduct.productPrice,
+                            product: selectedProduct,
                             productCount: productCount));
                         Navigator.pop(context);
                       },

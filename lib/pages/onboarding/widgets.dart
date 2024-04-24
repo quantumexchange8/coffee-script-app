@@ -43,15 +43,19 @@ Widget filledButton(
 
 Widget outlinedButton(
     {required void Function()? onPressed,
+    MaterialStateProperty<EdgeInsetsGeometry?>? padding,
     required String text,
     Color textColor = primaryColor,
     double borderThickness = 3,
     Size? size,
     double radius = 10,
-    Color borderColor = primaryColor}) {
+    Color borderColor = primaryColor,
+    TextStyle? textStyle}) {
   return OutlinedButton(
       onPressed: onPressed,
       style: ButtonStyle(
+          padding: padding,
+          minimumSize: MaterialStateProperty.all(const Size(10, 5)),
           overlayColor: MaterialStateColor.resolveWith(
               (states) => primaryColor.withOpacity(0.8)),
           side: MaterialStateBorderSide.resolveWith((states) =>
@@ -64,6 +68,6 @@ Widget outlinedButton(
               MaterialStateColor.resolveWith((states) => Colors.transparent)),
       child: Text(
         text,
-        style: textButtonStyle.copyWith(color: textColor),
+        style: textStyle ?? textButtonStyle.copyWith(color: textColor),
       ));
 }

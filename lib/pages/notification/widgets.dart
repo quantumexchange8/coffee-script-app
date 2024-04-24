@@ -147,10 +147,7 @@ Column notificationPerDayColumn({
               if (!determineIsLast(index, notificationToday))
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: height24 / 2),
-                  child: Divider(
-                    height: 1,
-                    color: const Color(0xFFCE9760).withOpacity(0.48),
-                  ),
+                  child: appDivider,
                 )
             ],
           );
@@ -159,3 +156,8 @@ Column notificationPerDayColumn({
     ],
   );
 }
+
+Divider appDivider = Divider(
+  height: 1,
+  color: const Color(0xFFCE9760).withOpacity(0.48),
+);

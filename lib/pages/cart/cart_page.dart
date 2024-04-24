@@ -33,7 +33,8 @@ class _CartPageState extends State<CartPage> {
     double subTotal = 0;
 
     for (var i = 0; i < cartItems.length; i++) {
-      subTotal += (cartItems[i].productPrice * cartItems[i].productCount);
+      subTotal +=
+          (cartItems[i].product.productPrice * cartItems[i].productCount);
     }
 
     const shippingCost = 6.0;
@@ -61,10 +62,10 @@ class _CartPageState extends State<CartPage> {
               .mapIndexed((i, e) => Padding(
                     padding: EdgeInsets.only(bottom: height24 / 2),
                     child: productSelectedContainer(
-                      productImage: e.productImage,
-                      productName: e.productName,
-                      productIngredients: e.productIngredient,
-                      productPrice: e.productPrice.toString(),
+                      productImage: e.product.productImage,
+                      productName: e.product.productName,
+                      productIngredients: e.product.productIngredient,
+                      productPrice: e.product.productPrice.toString(),
                       productCount: e.productCount,
                       onTapMinus: () {
                         setState(() {

@@ -1,40 +1,26 @@
 import 'dart:convert';
 
+import 'package:coffee_script_app/models/product.dart';
+
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class CartItem {
-  int productId;
-  String productImage;
-  String productName;
-  String productIngredient;
-  double productPrice;
+  Product product;
   int productCount;
   CartItem({
-    required this.productId,
-    required this.productImage,
-    required this.productName,
-    required this.productIngredient,
-    required this.productPrice,
+    required this.product,
     required this.productCount,
   });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'product_id': productId,
-      'product_image': productImage,
-      'product_name': productName,
-      'product_ingredient': productIngredient,
-      'product_price': productPrice,
+      'product': product,
       'product_count': productCount,
     };
   }
 
   factory CartItem.fromMap(Map<String, dynamic> map) {
     return CartItem(
-      productId: map['product_id'] as int,
-      productImage: map['product_image'] as String,
-      productName: map['product_name'] as String,
-      productIngredient: map['product_ingredient'] as String,
-      productPrice: double.parse(map['product_price']),
+      product: Product.fromMap(map['product']),
       productCount: 1,
     );
   }

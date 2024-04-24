@@ -1,36 +1,12 @@
 import 'package:coffee_script_app/helper/constant/color_pallete.dart';
 import 'package:coffee_script_app/helper/constant/text_style.dart';
 import 'package:coffee_script_app/helper/dimensions.dart';
-import 'package:coffee_script_app/models/cart_item.dart';
 import 'package:coffee_script_app/pages/cart/checkout_widgets/checkout_detail_column.dart';
 import 'package:coffee_script_app/pages/cart/checkout_widgets/product_list.dart';
+import 'package:coffee_script_app/pages/cart/sample_cart_items.dart';
 import 'package:coffee_script_app/pages/onboarding/widgets.dart';
 import 'package:coffee_script_app/pages/widgets/simple_appbar.dart';
 import 'package:flutter/material.dart';
-
-final _sampleCartItems = [
-  CartItem(
-      productId: 1,
-      productImage: 'assets/product/robusta.png',
-      productName: 'Robusta',
-      productIngredient: 'Milk',
-      productPrice: 20,
-      productCount: 1),
-  CartItem(
-      productId: 2,
-      productImage: 'assets/product/liberica.png',
-      productName: 'Liberica',
-      productIngredient: 'Water',
-      productPrice: 12,
-      productCount: 1),
-  CartItem(
-      productId: 3,
-      productImage: 'assets/product/cirtus.png',
-      productName: 'Cirtus',
-      productIngredient: 'Lemon',
-      productPrice: 12,
-      productCount: 1),
-];
 
 class CheckoutPage extends StatelessWidget {
   const CheckoutPage({super.key});
@@ -76,7 +52,7 @@ class CheckoutPage extends StatelessWidget {
           SizedBox(
             height: height24,
           ),
-          productList(cartItems: _sampleCartItems),
+          productList(cartItems: sampleCartItems1),
           SizedBox(
             height: height20,
           ),
