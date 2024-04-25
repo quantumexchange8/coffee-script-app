@@ -1,3 +1,4 @@
+import 'package:coffee_script_app/controller/controller.dart';
 import 'package:coffee_script_app/helper/constant/method.dart';
 import 'package:coffee_script_app/helper/dimensions.dart';
 import 'package:coffee_script_app/pages/auth/login_page.dart';
@@ -69,7 +70,18 @@ class _RegisterPageState extends State<RegisterPage> {
                   SizedBox(
                     height: height08 * 2,
                   ),
-                  filledButton(onPressed: () {}, text: 'Register')
+                  filledButton(
+                      onPressed: () async {
+                        await productController
+                            .getProductList()
+                            .then((success) {
+                          if (success) {
+                            Navigator.pushReplacementNamed(
+                                context, 'homeRoute');
+                          }
+                        });
+                      },
+                      text: 'Register')
                 ],
               ),
               SizedBox(

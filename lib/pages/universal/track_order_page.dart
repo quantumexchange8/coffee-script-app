@@ -2,6 +2,7 @@ import 'package:coffee_script_app/helper/constant/color_pallete.dart';
 import 'package:coffee_script_app/helper/dimensions.dart';
 import 'package:coffee_script_app/models/timeline.dart';
 import 'package:coffee_script_app/pages/onboarding/widgets.dart';
+import 'package:coffee_script_app/pages/universal/chat_with_rider_page.dart';
 import 'package:coffee_script_app/pages/universal/track_order_widgets/widgets.dart';
 import 'package:coffee_script_app/pages/widgets/simple_appbar.dart';
 import 'package:flutter/material.dart';
@@ -29,8 +30,9 @@ const List<Map<String, dynamic>> _timelineSample = [
   }
 ];
 
-class TrackOrder extends StatelessWidget {
-  const TrackOrder({super.key});
+class TrackOrderPage extends StatelessWidget {
+  final List<TimelineModel>? timelines;
+  const TrackOrderPage({super.key, this.timelines});
 
   @override
   Widget build(BuildContext context) {
@@ -48,13 +50,22 @@ class TrackOrder extends StatelessWidget {
           estimatedDeliveryTimeRow(
               estimatedTimeOne: '45', estimatedTimeTwo: '55'),
           deliveryTimeline(
-              timelineList: _timelineSample
-                  .map((e) => TimelineModel.fromMap(e))
-                  .toList()),
+              timelineList: timelines ??
+                  _timelineSample
+                      .map((e) => TimelineModel.fromMap(e))
+                      .toList()),
           SizedBox(
             height: height24 / 2,
           ),
-          filledButton(onPressed: () {}, text: 'Chat with Rider')
+          filledButton(
+              onPressed: () async {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ChatWithRiderPage(),
+                    ));
+              },
+              text: 'Chat with Rider')
         ],
       ),
     );

@@ -6,6 +6,7 @@ import 'package:coffee_script_app/pages/onboarding/widgets.dart';
 import 'package:flutter/material.dart';
 
 Row myOrderRow({
+  required void Function()? onPressedTrack,
   required Order order,
 }) {
   return Row(
@@ -70,7 +71,7 @@ Row myOrderRow({
                   fontSize: height10 * 1.1, color: primaryColor),
               text: 'Complete')
           : filledButton(
-              onPressed: () {},
+              onPressed: onPressedTrack,
               textStyle: subtitleStyle.copyWith(
                 fontSize: height10 * 1.1,
               ),

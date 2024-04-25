@@ -25,12 +25,14 @@ Row riderProfileRow({
       Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             riderName,
             style: subtitleStyle.copyWith(fontSize: subtitleSmall),
           ),
           Entry.offset(
+            yOffset: 50,
             visible: isOnline,
             child: Text(
               'Online',

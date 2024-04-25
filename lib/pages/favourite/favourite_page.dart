@@ -3,12 +3,14 @@ import 'package:coffee_script_app/helper/dimensions.dart';
 import 'package:coffee_script_app/models/product.dart';
 import 'package:coffee_script_app/pages/favourite/widgets.dart';
 import 'package:coffee_script_app/pages/home/widgets/product_container.dart';
+import 'package:coffee_script_app/pages/notification/notification_page.dart';
 import 'package:coffee_script_app/pages/widgets/simple_appbar.dart';
 import 'package:coffee_script_app/pages/widgets/white_icon_button.dart';
 import 'package:flutter/material.dart';
 
 class FavouritePage extends StatefulWidget {
-  const FavouritePage({super.key});
+  final void Function() onTapBack;
+  const FavouritePage({super.key, required this.onTapBack});
 
   @override
   State<FavouritePage> createState() => _FavouritePageState();
@@ -30,12 +32,21 @@ class _FavouritePageState extends State<FavouritePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
-      appBar: simpleAppBar(context, title: 'Favourite', actions: [
-        whiteIconButton(
-          'assets/iconImage/notification-4-line-white.png',
-          onPressed: () {},
-        )
-      ]),
+      appBar: simpleAppBar(context,
+          onPressedBack: widget.onTapBack,
+          title: 'Favourite',
+          actions: [
+            whiteIconButton(
+              'assets/iconImage/notification-4-line-white.png',
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const NotificationPage(),
+                    ));
+              },
+            )
+          ]),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: width20, vertical: height24),
         child: Column(

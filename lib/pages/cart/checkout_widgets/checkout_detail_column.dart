@@ -5,6 +5,7 @@ import 'package:coffee_script_app/pages/onboarding/widgets.dart';
 import 'package:flutter/material.dart';
 
 Column checkoutDetailColumn({
+  required void Function()? onTapAddCard,
   required String title,
   required iconAddress,
   required String subtitle,
@@ -23,23 +24,26 @@ Column checkoutDetailColumn({
       ),
       Row(
         children: [
-          Container(
-              padding: EdgeInsets.all(height24 / 2),
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: primaryColor,
-              ),
-              child: iconAddress is IconData
-                  ? Icon(
-                      iconAddress,
-                      color: descriptionColor,
-                      size: height24,
-                    )
-                  : Image.asset(
-                      iconAddress,
-                      fit: BoxFit.fitHeight,
-                      height: height24,
-                    )),
+          GestureDetector(
+            onTap: onTapAddCard,
+            child: Container(
+                padding: EdgeInsets.all(height24 / 2),
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: primaryColor,
+                ),
+                child: iconAddress is IconData
+                    ? Icon(
+                        iconAddress,
+                        color: descriptionColor,
+                        size: height24,
+                      )
+                    : Image.asset(
+                        iconAddress,
+                        fit: BoxFit.fitHeight,
+                        height: height24,
+                      )),
+          ),
           SizedBox(
             width: width08 * 2,
           ),
@@ -63,7 +67,7 @@ Column checkoutDetailColumn({
             ),
           ),
           filledButton(
-              onPressed: () {},
+              onPressed: onTapAddCard,
               visualDensity: VisualDensity.compact,
               padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
               textStyle:

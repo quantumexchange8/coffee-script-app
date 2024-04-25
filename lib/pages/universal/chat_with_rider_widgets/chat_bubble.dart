@@ -31,18 +31,27 @@ Widget voiceChatBubble({
   void Function()? onTapPlay,
   required bool isSender,
   required PlayerController playerController,
-  required int audioDurationInMilliseconds,
+  required int? audioDurationInMilliseconds,
 }) {
-  int durationInSecond = audioDurationInMilliseconds ~/ 100;
+  String durationString;
+  if (audioDurationInMilliseconds != null &&
+      !audioDurationInMilliseconds.isNegative) {
+    int durationInSecond = audioDurationInMilliseconds ~/ 100;
+    durationString =
+        '${(durationInSecond / 60).truncate()}:${durationInSecond % 60}';
+  } else {
+    durationString = '0:00';
+  }
 
   return Align(
     alignment: isSender ? Alignment.centerRight : Alignment.centerLeft,
     child: Container(
+      width: width100 * 2.48,
       padding:
           EdgeInsets.symmetric(horizontal: width08, vertical: height24 / 2),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
-        color: backgroundColor,
+        color: isSender ? backgroundColor : textColor,
       ),
       child: Row(
         children: [
@@ -50,38 +59,44 @@ Widget voiceChatBubble({
             onTap: onTapPlay,
             child: Container(
               padding: EdgeInsets.all(height08 / 2),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
-                color: isSender ? backgroundColor : textColor,
+                color: primaryColor,
               ),
               child: Icon(
                 playerController.playerState.isPlaying
-                    ? Icons.play_arrow_rounded
-                    : Icons.stop,
+                    ? Icons.stop
+                    : Icons.play_arrow_rounded,
                 color: textColor,
                 size: height10 * 1.8,
               ),
             ),
           ),
-          AudioFileWaveforms(
-            size: Size(width10 * 8.6, height10 * 3.2),
-            playerController: playerController,
-            enableSeekGesture: true,
-            waveformType: WaveformType.long,
-            waveformData: const [],
-            playerWaveStyle: PlayerWaveStyle(
-              fixedWaveColor:
-                  isSender ? Colors.grey.withOpacity(0.4) : Colors.grey,
-              liveWaveColor: primaryColor,
-              spacing: 0.5,
+          Expanded(
+            child: AudioFileWaveforms(
+              size: Size(width10 * 8.6, height10 * 3.2),
+              playerController: playerController,
+              enableSeekGesture: true,
+              waveformType: WaveformType.long,
+              waveformData: const [],
+              playerWaveStyle: PlayerWaveStyle(
+                  fixedWaveColor:
+                      isSender ? Colors.grey.withOpacity(0.4) : Colors.grey,
+                  liveWaveColor: primaryColor,
+                  spacing: 3,
+                  showSeekLine: false,
+                  waveThickness: 2),
             ),
           ),
-          Text(
-            '${durationInSecond / 60}:${durationInSecond % 60}',
-            style: descriptionStyle.copyWith(
-                fontFamily: 'Noto Sans',
-                fontSize: titleSmall,
-                color: isSender ? Colors.grey.withOpacity(0.4) : Colors.grey),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: width08),
+            child: Text(
+              durationString,
+              style: descriptionStyle.copyWith(
+                  fontFamily: 'Noto Sans',
+                  fontSize: titleSmall,
+                  color: isSender ? Colors.grey.withOpacity(0.4) : Colors.grey),
+            ),
           ),
           Icon(
             Icons.volume_up,

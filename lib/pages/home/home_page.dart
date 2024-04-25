@@ -6,6 +6,7 @@ import 'package:coffee_script_app/pages/home/widgets/product_gridview.dart';
 import 'package:coffee_script_app/pages/home/widgets/product_type_row.dart';
 import 'package:coffee_script_app/pages/home/widgets/promotion_container.dart';
 import 'package:coffee_script_app/pages/home/widgets/user_name_row.dart';
+import 'package:coffee_script_app/pages/notification/notification_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -49,53 +50,59 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       backgroundColor: backgroundColor,
-      body: ListView(
-        shrinkWrap: true,
-        physics: const BouncingScrollPhysics(),
-        children: [
-          SizedBox(
-            height: height10 * 7,
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: width20,
+      body: SafeArea(
+        child: ListView(
+          padding: EdgeInsets.symmetric(vertical: height24),
+          shrinkWrap: true,
+          physics: const BouncingScrollPhysics(),
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: width20,
+              ),
+              child: userNameRow(
+                userImageUrl: userInfo['user_image'],
+                userName: userInfo['user_name'],
+                onPressedSearch: () {},
+                onPressedNotification: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const NotificationPage(),
+                      ));
+                },
+              ),
             ),
-            child: userNameRow(
-              userImageUrl: userInfo['user_image'],
-              userName: userInfo['user_name'],
-              onPressedSearch: () {},
-              onPressedNotification: () {},
+            Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: height08 * 2,
+                horizontal: width20,
+              ),
+              child: promotionContainer,
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: height08 * 2,
-              horizontal: width20,
+            SingleChildScrollView(
+              padding: EdgeInsets.symmetric(
+                horizontal: width20,
+              ),
+              scrollDirection: Axis.horizontal,
+              child: productTypeRow(
+                currentTypeIndex,
+                onPressedType: (index) {
+                  setState(() {
+                    currentTypeIndex = index;
+                  });
+                },
+              ),
             ),
-            child: promotionContainer,
-          ),
-          SingleChildScrollView(
-            padding: EdgeInsets.symmetric(
-              horizontal: width20,
-            ),
-            scrollDirection: Axis.horizontal,
-            child: productTypeRow(
-              currentTypeIndex,
-              onPressedType: (index) {
-                setState(() {
-                  currentTypeIndex = index;
-                });
-              },
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: height08 * 2,
-              horizontal: width20,
-            ),
-            child: productGridview(allCategory[currentTypeIndex]),
-          )
-        ],
+            Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: height08 * 2,
+                horizontal: width20,
+              ),
+              child: productGridview(allCategory[currentTypeIndex]),
+            )
+          ],
+        ),
       ),
     );
   }

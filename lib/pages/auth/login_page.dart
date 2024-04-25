@@ -1,3 +1,4 @@
+import 'package:coffee_script_app/controller/controller.dart';
 import 'package:coffee_script_app/helper/constant/method.dart';
 import 'package:coffee_script_app/helper/dimensions.dart';
 import 'package:coffee_script_app/pages/auth/register_page.dart';
@@ -70,7 +71,18 @@ class _LoginPageState extends State<LoginPage> {
                       SizedBox(
                         height: height08 * 2,
                       ),
-                      filledButton(onPressed: () {}, text: 'Sign In')
+                      filledButton(
+                          onPressed: () async {
+                            await productController
+                                .getProductList()
+                                .then((success) {
+                              if (success) {
+                                Navigator.pushReplacementNamed(
+                                    context, 'homeRoute');
+                              }
+                            });
+                          },
+                          text: 'Sign In')
                     ],
                   ),
                 ),

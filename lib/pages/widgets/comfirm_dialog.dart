@@ -4,7 +4,11 @@ import 'package:coffee_script_app/helper/dimensions.dart';
 import 'package:coffee_script_app/pages/onboarding/widgets.dart';
 import 'package:flutter/material.dart';
 
-Dialog comfirmRemoveItemDialog(BuildContext context) {
+Dialog comfirmDialog(
+  BuildContext context, {
+  required String title,
+  required String description,
+}) {
   return Dialog(
     insetPadding: EdgeInsets.symmetric(horizontal: width20),
     backgroundColor: primaryColor,
@@ -15,14 +19,14 @@ Dialog comfirmRemoveItemDialog(BuildContext context) {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'Remove from Cart?',
+            title,
             style: subtitleStyle.copyWith(fontSize: subtitleSmall),
           ),
           SizedBox(
             height: height08,
           ),
           Text(
-            'Lorem ipsum dolor sit amet consectetur. Vestibulum eget\nblandit mattis ',
+            description,
             textAlign: TextAlign.center,
             style: descriptionStyle.copyWith(
                 color: descriptionColor, fontSize: height10),

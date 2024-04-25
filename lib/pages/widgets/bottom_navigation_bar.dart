@@ -36,7 +36,8 @@ final List<TabItem> tabItems = iconAddress
     )
     .toList();
 
-Widget customBottomNavigationBar({required void Function(int) onTap}) {
+Widget customBottomNavigationBar(
+    {required void Function(int) onTap, TabController? tabController}) {
   return StyleProvider(
     style: StyleBottomBar(),
     child: ConvexAppBar(
@@ -49,6 +50,7 @@ Widget customBottomNavigationBar({required void Function(int) onTap}) {
       top: -(height10 * 1.5),
       height: height20 * 4,
       onTap: onTap,
+      controller: tabController,
       // chipBuilder: CustomChip(),
     ),
   );

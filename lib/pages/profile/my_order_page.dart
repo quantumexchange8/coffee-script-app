@@ -3,6 +3,7 @@ import 'package:coffee_script_app/helper/dimensions.dart';
 import 'package:coffee_script_app/models/order.dart';
 import 'package:coffee_script_app/pages/cart/sample_cart_items.dart';
 import 'package:coffee_script_app/pages/profile/my_order_widgets/my_order_row.dart';
+import 'package:coffee_script_app/pages/universal/track_order_page.dart';
 import 'package:coffee_script_app/pages/widgets/outside_appbar.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,16 @@ class MyOrderPage extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: width20),
-                child: myOrderRow(order: order),
+                child: myOrderRow(
+                    onPressedTrack: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                TrackOrderPage(timelines: order.timeline),
+                          ));
+                    },
+                    order: order),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: height08),

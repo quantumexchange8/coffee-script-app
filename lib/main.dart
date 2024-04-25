@@ -1,18 +1,17 @@
 // ignore_for_file: use_build_context_synchronously
 
-// import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
+import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:coffee_script_app/controller/cart_controller.dart';
 // import 'package:coffee_script_app/controller/controller.dart';
 import 'package:coffee_script_app/controller/product_controller.dart';
 import 'package:coffee_script_app/controller/timeline_controller.dart';
 import 'package:coffee_script_app/helper/dimensions.dart';
 import 'package:coffee_script_app/pages/auth/login_page.dart';
-import 'package:coffee_script_app/pages/home/home_page.dart';
+import 'package:coffee_script_app/pages/main_layout.dart';
 import 'package:coffee_script_app/pages/onboarding/splash_page.dart';
-import 'package:coffee_script_app/pages/profile/setting_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   Future.delayed(const Duration(milliseconds: 200)).then((val) async {
@@ -22,6 +21,8 @@ void main() {
     runApp(const MyApp());
   }, onError: (error) {});
 }
+
+final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
   const MyApp({
@@ -34,7 +35,8 @@ class MyApp extends StatelessWidget {
     screenHeight = MediaQuery.of(context).size.height;
     screenWidth = MediaQuery.of(context).size.width;
 
-    return MaterialApp(
+    return GetMaterialApp(
+      navigatorKey: _navigatorKey,
       debugShowCheckedModeBanner: false,
       title: 'Coffee Script App',
       theme: ThemeData(
@@ -42,41 +44,42 @@ class MyApp extends StatelessWidget {
           // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           // useMaterial3: true,
           ),
-      home: const SettingPage(),
-      //  FlutterSplashScreen.fadeIn(
-      //   backgroundImage: Image.asset(
-      //       'assets/backgroundPicture/splash_screen.png',
-      //       fit: BoxFit.cover),
-      //   childWidget: Image.asset(
-      //     'assets/logo/coffeescript_logo.png',
-      //     fit: BoxFit.fitHeight,
-      //     height: height100 * 1.57,
-      //   ),
-      //   asyncNavigationCallback: () async {
-      //     SharedPreferences prefs = await SharedPreferences.getInstance();
+      home: FlutterSplashScreen.fadeIn(
+        backgroundImage: Image.asset(
+            'assets/backgroundPicture/splash_screen.png',
+            fit: BoxFit.cover),
+        childWidget: Image.asset(
+          'assets/logo/coffeescript_logo.png',
+          fit: BoxFit.fitHeight,
+          height: height100 * 1.57,
+        ),
+        asyncNavigationCallback: () async {
+          Future.delayed(const Duration(milliseconds: 2000)).then((val) async {
+            SharedPreferences prefs = await SharedPreferences.getInstance();
 
-      //     bool? firstTime = prefs.getBool('first_time');
+            bool? firstTime = prefs.getBool('first_time');
 
-      //     if (firstTime != null && firstTime) {
-      //       prefs.setBool('first_time', false);
-      //       Navigator.pushReplacementNamed(context, 'splashRoute');
-      //       return;
-      //     } else {
-      //       bool getProductSuccess = await productController.getProductList();
+            if (firstTime != null && firstTime) {
+              prefs.setBool('first_time', false);
+              _navigatorKey.currentState?.pushReplacementNamed('splashRoute');
+              return;
+            } else {
+              // bool getProductSuccess = await productController.getProductList();
 
-      //       if (!getProductSuccess) {
-      //         Navigator.pushReplacementNamed(context, 'loginRoute');
-      //         return;
-      //       }
+              // if (!getProductSuccess) {
+              _navigatorKey.currentState?.pushReplacementNamed('loginRoute');
+              return;
+              // }
 
-      //       Navigator.pushReplacementNamed(context, 'homeRoute');
-      //       return;
-      //     }
-      //   },
-      // ),
+              // _navigatorKey.currentState?.pushReplacementNamed('homeRoute');
+              // return;
+            }
+          }, onError: (error) {});
+        },
+      ),
       routes: {
         'loginRoute': (p0) => const LoginPage(),
-        'homeRoute': (p0) => const HomePage(),
+        'homeRoute': (p0) => const MainLayout(),
         'splashRoute': (p0) => const SplashPage(),
       },
     );

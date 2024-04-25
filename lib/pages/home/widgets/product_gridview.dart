@@ -29,7 +29,7 @@ GridView productGridview(List<Product> productList) {
         child: productContainer(
             productImage: product.productImage,
             productName: product.productName,
-            productPrice: product.toString(),
+            productPrice: product.productPrice.toInt().toString(),
             productDescription: product.productDescription,
             isFavourite: product.favourite),
       );

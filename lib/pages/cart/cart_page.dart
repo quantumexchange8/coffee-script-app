@@ -5,7 +5,9 @@ import 'package:coffee_script_app/helper/dimensions.dart';
 import 'package:coffee_script_app/models/cart_item.dart';
 import 'package:coffee_script_app/pages/cart/cart_widgets/product_selected_container.dart';
 import 'package:coffee_script_app/pages/cart/cart_widgets/product_summary_container.dart';
-import 'package:coffee_script_app/pages/cart/cart_widgets/comfirm_remove_item_dialog.dart';
+import 'package:coffee_script_app/pages/cart/checkout_page.dart';
+import 'package:coffee_script_app/pages/notification/notification_page.dart';
+import 'package:coffee_script_app/pages/widgets/comfirm_dialog.dart';
 import 'package:coffee_script_app/pages/onboarding/widgets.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -15,9 +17,11 @@ import 'package:coffee_script_app/pages/widgets/simple_appbar.dart';
 import 'package:coffee_script_app/pages/widgets/white_icon_button.dart';
 
 class CartPage extends StatefulWidget {
+  final void Function() onTapBack;
   const CartPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+    required this.onTapBack,
+  });
 
   @override
   State<CartPage> createState() => _CartPageState();
@@ -42,12 +46,21 @@ class _CartPageState extends State<CartPage> {
 
     return Scaffold(
       backgroundColor: backgroundColor,
-      appBar: simpleAppBar(context, title: 'Cart', actions: [
-        whiteIconButton(
-          'assets/iconImage/notification-4-line-white.png',
-          onPressed: () {},
-        )
-      ]),
+      appBar: simpleAppBar(context,
+          onPressedBack: widget.onTapBack,
+          title: 'Cart',
+          actions: [
+            whiteIconButton(
+              'assets/iconImage/notification-4-line-white.png',
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const NotificationPage(),
+                    ));
+              },
+            )
+          ]),
       body: ListView(
         shrinkWrap: true,
         children: [
@@ -80,8 +93,10 @@ class _CartPageState extends State<CartPage> {
                       onTapDelete: () {
                         showDialog(
                           context: context,
-                          builder: (context) =>
-                              comfirmRemoveItemDialog(context),
+                          builder: (context) => comfirmDialog(context,
+                              title: 'Remove from Cart?',
+                              description:
+                                  'Lorem ipsum dolor sit amet consectetur. Vestibulum eget\nblandit mattis '),
                         ).then((yesRemove) {
                           if (yesRemove != null && yesRemove) {
                             setState(() {
@@ -104,7 +119,13 @@ class _CartPageState extends State<CartPage> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: width20),
             child: outlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CheckoutPage(),
+                      ));
+                },
                 text: 'Finalize Order',
                 size: Size(width100 * 3.5, height10 * 5.9),
                 borderThickness: 1.5,

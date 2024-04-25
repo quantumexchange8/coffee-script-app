@@ -2,18 +2,21 @@ import 'package:coffee_script_app/helper/constant/color_pallete.dart';
 import 'package:coffee_script_app/helper/constant/method.dart';
 import 'package:coffee_script_app/helper/dimensions.dart';
 import 'package:coffee_script_app/pages/home/home_page.dart';
+import 'package:coffee_script_app/pages/notification/notification_page.dart';
 import 'package:coffee_script_app/pages/profile/my_order_page.dart';
 import 'package:coffee_script_app/pages/profile/privacy_and_policy_page.dart';
 import 'package:coffee_script_app/pages/profile/profile_widget/profile_image_column.dart';
 import 'package:coffee_script_app/pages/profile/profile_widget/profile_navigation_row.dart';
 import 'package:coffee_script_app/pages/profile/setting_page.dart';
+import 'package:coffee_script_app/pages/widgets/comfirm_dialog.dart';
 import 'package:coffee_script_app/pages/widgets/simple_appbar.dart';
 import 'package:coffee_script_app/pages/widgets/white_icon_button.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  final void Function() onTapBack;
+  const ProfilePage({super.key, required this.onTapBack});
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +55,21 @@ class ProfilePage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: backgroundColor,
-      appBar: simpleAppBar(context, title: 'Profile', actions: [
-        whiteIconButton(
-          'assets/iconImage/notification-4-line-white.png',
-          onPressed: () {},
-        )
-      ]),
+      appBar: simpleAppBar(context,
+          onPressedBack: onTapBack,
+          title: 'Profile',
+          actions: [
+            whiteIconButton(
+              'assets/iconImage/notification-4-line-white.png',
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const NotificationPage(),
+                    ));
+              },
+            )
+          ]),
       body: ListView(
         padding: EdgeInsets.symmetric(vertical: height24, horizontal: width20),
         children: [
@@ -76,7 +88,23 @@ class ProfilePage extends StatelessWidget {
                         iconAddress: e['icon_address'],
                         navigationName: e['navigation_name'],
                         nextPage: e['navigation_page'],
-                        onTap: e['navigation_name'] == 'Logout' ? () {} : null),
+                        onTap: e['navigation_name'] == 'Logout'
+                            ? () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => comfirmDialog(context,
+                                      title: 'Logout',
+                                      description:
+                                          'Are you sure you want to logout?'),
+                                ).then((yes) {
+                                  if (yes != null && yes) {
+                                    Navigator.popUntil(
+                                        context, (route) => false);
+                                    Navigator.pushNamed(context, 'loginRoute');
+                                  }
+                                });
+                              }
+                            : null),
                   ))
               .toList()
         ],
