@@ -4,9 +4,11 @@ import 'package:coffee_script_app/helper/dimensions.dart';
 import 'package:flutter/material.dart';
 
 Column profileImageColumn({
-  required String userImage,
+  String? userImage,
   required String userName,
 }) {
+  bool noImage = userImage == null;
+
   return Column(
     mainAxisSize: MainAxisSize.min,
     children: [
@@ -18,8 +20,18 @@ Column profileImageColumn({
             Container(
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  image: DecorationImage(
-                      image: NetworkImage(userImage), fit: BoxFit.cover)),
+                  color: noImage ? textColor : null,
+                  image: noImage
+                      ? null
+                      : DecorationImage(
+                          image: NetworkImage(userImage), fit: BoxFit.cover)),
+              child: noImage
+                  ? Icon(
+                      Icons.person,
+                      color: Colors.black,
+                      size: height24,
+                    )
+                  : null,
             ),
             Align(
               alignment: Alignment.bottomRight,

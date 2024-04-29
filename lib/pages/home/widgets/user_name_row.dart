@@ -1,15 +1,26 @@
+import 'package:coffee_script_app/helper/constant/color_pallete.dart';
 import 'package:coffee_script_app/helper/constant/text_style.dart';
 import 'package:coffee_script_app/helper/dimensions.dart';
 import 'package:coffee_script_app/pages/widgets/white_icon_button.dart';
 import 'package:flutter/material.dart';
 
-Container userImageContainer(String url) => Container(
+Container userImageContainer(String? url) => Container(
       height: height30 * 2,
       width: height30 * 2,
       decoration: BoxDecoration(
           shape: BoxShape.circle,
-          image:
-              DecorationImage(image: NetworkImage(url), fit: BoxFit.fitHeight)),
+          color: url == null ? textColor : null,
+          image: url == null
+              ? null
+              : DecorationImage(
+                  image: NetworkImage(url), fit: BoxFit.fitHeight)),
+      child: url == null
+          ? Icon(
+              Icons.person,
+              color: Colors.black,
+              size: height24,
+            )
+          : null,
     );
 
 Column userNameColumn(String userName) {
@@ -43,7 +54,7 @@ Column userNameColumn(String userName) {
 }
 
 Row userNameRow({
-  required String userImageUrl,
+  String? userImageUrl,
   required String userName,
   required void Function()? onPressedSearch,
   required void Function()? onPressedNotification,

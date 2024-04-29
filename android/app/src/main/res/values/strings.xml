@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CoffeeScript</string>
+    <string name="facebook_app_id">791809759675832</string>
+    <string name="fb_login_protocol_scheme">fb791809759675832</string>
+    <string name="facebook_client_token">e07ff158f51c07ad9de17440e51cc335</string>
+</resources>

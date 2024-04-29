@@ -1,7 +1,7 @@
+import 'package:coffee_script_app/controller/controller.dart';
 import 'package:coffee_script_app/helper/constant/color_pallete.dart';
 import 'package:coffee_script_app/helper/constant/method.dart';
 import 'package:coffee_script_app/helper/dimensions.dart';
-import 'package:coffee_script_app/pages/home/home_page.dart';
 import 'package:coffee_script_app/pages/notification/notification_page.dart';
 import 'package:coffee_script_app/pages/profile/my_order_page.dart';
 import 'package:coffee_script_app/pages/profile/privacy_and_policy_page.dart';
@@ -74,8 +74,8 @@ class ProfilePage extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: height24, horizontal: width20),
         children: [
           profileImageColumn(
-              userImage: userInfo['user_image'],
-              userName: userInfo['user_name']),
+              userImage: userController.profile.value!.image,
+              userName: userController.profile.value!.name),
           SizedBox(
             height: height31,
           ),

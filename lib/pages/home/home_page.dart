@@ -16,12 +16,6 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-Map<String, dynamic> userInfo = {
-  'user_name': 'Shahzaib R.',
-  'user_image':
-      'https://plus.unsplash.com/premium_photo-1683121366070-5ceb7e007a97?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D'
-};
-
 class _HomePageState extends State<HomePage> {
   int currentTypeIndex = 0;
   List<Product> allProductList = productController.productList;
@@ -61,8 +55,8 @@ class _HomePageState extends State<HomePage> {
                 horizontal: width20,
               ),
               child: userNameRow(
-                userImageUrl: userInfo['user_image'],
-                userName: userInfo['user_name'],
+                userImageUrl: userController.profile.value!.image,
+                userName: userController.profile.value!.name,
                 onPressedSearch: () {},
                 onPressedNotification: () {
                   Navigator.push(

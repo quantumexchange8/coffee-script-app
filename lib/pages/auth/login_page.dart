@@ -20,6 +20,18 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    Future<void> logInWithThirdParty(String method) async {
+      await userController.logIn(method).then((acc) async {
+        if (acc != null) {
+          await productController.getProductList().then((success) {
+            if (success) {
+              Navigator.pushReplacementNamed(context, 'homeRoute');
+            }
+          });
+        }
+      });
+    }
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -97,13 +109,26 @@ class _LoginPageState extends State<LoginPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  thirdPartyLogo('assets/logo/facebook_logo.png',
-                      cacheHeight: (height10 * 4).toInt()),
+                  GestureDetector(
+                    onTap: () async {
+                      logInWithThirdParty('fb');
+                    },
+                    child: thirdPartyLogo('assets/logo/facebook_logo.png',
+                        cacheHeight: (height10 * 4).toInt()),
+                  ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: width20),
-                    child: thirdPartyLogo('assets/logo/google_logo.png'),
+                    child: GestureDetector(
+                        onTap: () async {
+                          logInWithThirdParty('gl');
+                        },
+                        child: thirdPartyLogo('assets/logo/google_logo.png')),
                   ),
-                  thirdPartyLogo('assets/logo/twitter_logo.png'),
+                  GestureDetector(
+                      onTap: () async {
+                        logInWithThirdParty('tw');
+                      },
+                      child: thirdPartyLogo('assets/logo/twitter_logo.png')),
                 ],
               ),
               const Expanded(flex: 2, child: SizedBox()),
